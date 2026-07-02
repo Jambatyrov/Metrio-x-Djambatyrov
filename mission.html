@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Миссия и видение — Metrio.co</title>
+<style>
+@font-face{font-family:'Gilroy';src:url('https://fonts.cdnfonts.com/s/16583/Gilroy-Regular.woff') format('woff');font-weight:400}
+@font-face{font-family:'Gilroy';src:url('https://fonts.cdnfonts.com/s/16583/Gilroy-Bold.woff') format('woff');font-weight:700}
+@font-face{font-family:'Gilroy';src:url('https://fonts.cdnfonts.com/s/16583/Gilroy-ExtraBold.woff') format('woff');font-weight:800}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D0D0D;--bg2:#141414;--bg3:#1A1A1A;
+  --border:#222;--border2:#2E2E2E;
+  --text:#F0F0EE;--text2:#888;--text3:#444;
+}
+html,body{
+  font-family:'Gilroy','Inter',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;-webkit-font-smoothing:antialiased;
+}
+body.light{--bg:#F7F7F5;--bg2:#EFEFED;--bg3:#E8E8E6;--border:#DCDCD8;--border2:#C8C8C4;--text:#0C0C0C;--text2:#777;--text3:#BBBBBB}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,13,13,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  height:64px;padding:0 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+body.light .nav{background:rgba(247,247,245,.96)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:22px;width:auto;filter:brightness(10)}
+body.light .nav-logo img{filter:none}
+.nav-logo-text{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.3px}
+.nav-back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--text2);
+  text-decoration:none;transition:color .2s;
+}
+.nav-back:hover{color:var(--text)}
+.nav-back svg{width:16px;height:16px}
+
+/* PAGE */
+.page{max-width:1200px;margin:0 auto;padding:0 3rem}
+
+/* HERO BLOCK */
+.m-hero{
+  padding:8rem 0 6rem;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.m-hero-num{
+  font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text3);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:2.5rem;
+}
+.m-hero-num::before{content:'';width:24px;height:1px;background:var(--text3);display:block}
+
+.m-hero-title{
+  font-size:clamp(44px,7vw,96px);
+  font-weight:800;color:var(--text);
+  line-height:1.02;letter-spacing:-3px;
+  margin-bottom:3rem;
+}
+.m-hero-title em{
+  font-style:normal;
+  -webkit-text-stroke:1.5px var(--text);
+  color:transparent;
+}
+body.light .m-hero-title em{-webkit-text-stroke-color:var(--text)}
+
+.m-hero-sub{
+  font-size:clamp(17px,2vw,22px);
+  color:var(--text2);line-height:1.7;
+  max-width:640px;font-weight:400;
+}
+
+/* big bg word */
+.m-bg-word{
+  position:absolute;
+  right:-2rem;bottom:-1rem;
+  font-size:clamp(120px,20vw,280px);
+  font-weight:900;letter-spacing:-8px;
+  color:rgba(255,255,255,.025);
+  pointer-events:none;user-select:none;
+  line-height:1;white-space:nowrap;
+}
+body.light .m-bg-word{color:rgba(0,0,0,.04)}
+
+/* COLLAB */
+.m-collab{
+  padding:5rem 0;
+  border-bottom:1px solid var(--border);
+}
+.m-collab-label{
+  font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text3);
+  margin-bottom:2rem;
+  display:flex;align-items:center;gap:10px;
+}
+.m-collab-label::before{content:'';width:24px;height:1px;background:var(--text3);display:block}
+
+.m-collab-names{
+  display:flex;align-items:center;
+  gap:2rem;flex-wrap:wrap;
+  margin-bottom:2.5rem;
+}
+.m-collab-name{
+  font-size:clamp(40px,6vw,80px);
+  font-weight:900;letter-spacing:-2px;line-height:1;
+  color:var(--text);
+}
+.m-collab-x{
+  font-size:clamp(32px,5vw,64px);
+  font-weight:300;color:var(--text3);line-height:1;
+}
+.m-collab-desc{
+  font-size:clamp(15px,1.6vw,18px);
+  color:var(--text2);line-height:1.8;
+  max-width:680px;
+}
+
+/* GOALS */
+.m-goals{
+  padding:5rem 0;
+  border-bottom:1px solid var(--border);
+}
+.m-goals-label{
+  font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text3);
+  margin-bottom:3rem;
+  display:flex;align-items:center;gap:10px;
+}
+.m-goals-label::before{content:'';width:24px;height:1px;background:var(--text3);display:block}
+
+.m-goals-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--border);
+  border-left:1px solid var(--border);
+}
+.m-goal{
+  padding:2.5rem 2rem;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  transition:background .25s;
+}
+.m-goal:hover{background:rgba(255,255,255,.03)}
+body.light .m-goal:hover{background:rgba(0,0,0,.02)}
+.m-goal-num{
+  font-size:11px;font-weight:700;letter-spacing:.1em;
+  color:var(--text3);margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:8px;
+}
+.m-goal-num::before{content:'';width:14px;height:1px;background:var(--text3);display:block}
+.m-goal-title{
+  font-size:clamp(20px,2.2vw,28px);font-weight:800;
+  color:var(--text);letter-spacing:-.5px;line-height:1.2;
+  margin-bottom:.85rem;
+}
+.m-goal-desc{font-size:14px;color:var(--text2);line-height:1.8}
+
+/* MANIFESTO */
+.m-manifesto{
+  padding:5rem 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6rem;
+  border-bottom:1px solid var(--border);
+}
+.m-manifesto-label{
+  font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text3);
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:10px;
+}
+.m-manifesto-label::before{content:'';width:24px;height:1px;background:var(--text3);display:block}
+.m-quote{
+  font-size:clamp(22px,2.8vw,34px);
+  font-weight:700;color:var(--text);
+  line-height:1.4;letter-spacing:-.5px;
+}
+.m-list{display:flex;flex-direction:column;padding-top:.25rem}
+.m-list-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:1rem 0;border-bottom:1px solid var(--border);
+  font-size:15px;font-weight:500;color:var(--text2);
+  line-height:1.5;transition:color .2s;
+}
+.m-list-item:last-child{border-bottom:none}
+.m-list-item:hover{color:var(--text)}
+.m-list-n{
+  font-size:11px;font-weight:700;color:var(--text3);
+  letter-spacing:.08em;flex-shrink:0;padding-top:2px;
+  min-width:20px;
+}
+
+/* FOOTER CTA */
+.m-cta{
+  padding:5rem 0 7rem;
+  text-align:center;
+}
+.m-cta-title{
+  font-size:clamp(28px,4vw,52px);
+  font-weight:800;color:var(--text);
+  letter-spacing:-1.5px;margin-bottom:1rem;
+}
+.m-cta-sub{font-size:16px;color:var(--text2);margin-bottom:2.5rem}
+.m-cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--text);color:var(--bg);
+  font-family:'Gilroy','Inter',sans-serif;
+  font-size:15px;font-weight:700;
+  padding:14px 28px;border-radius:4px;
+  text-decoration:none;transition:opacity .2s;
+}
+.m-cta-btn:hover{opacity:.85}
+.m-cta-btn svg{width:16px;height:16px}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+@media(max-width:900px){
+  .page{padding:0 1.5rem}
+  .nav{padding:0 1.25rem}
+  .m-hero{padding:5rem 0 4rem}
+  .m-hero-title{font-size:clamp(36px,9vw,54px);letter-spacing:-1.5px}
+  .m-collab-names{gap:1rem}
+  .m-collab-name{font-size:clamp(32px,8vw,52px)}
+  .m-goals-grid{grid-template-columns:1fr}
+  .m-manifesto{grid-template-columns:1fr;gap:3rem}
+  .m-collab,.m-goals,.m-manifesto{padding:3.5rem 0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img src="data:image/png;base64,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" alt="Metrio">
+    <span class="nav-logo-text">Metrio.co</span>
+  </a>
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="19 12 5 12"/><polyline points="12 5 5 12 12 19"/></svg>
+    На главную
+  </a>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="m-hero">
+    <div class="m-bg-word">VISION</div>
+    <div class="m-hero-num rv">Миссия и видение</div>
+    <h1 class="m-hero-title rv d1">
+      Строить бренды,<br>
+      которые <em>остаются</em><br>
+      на десятилетия
+    </h1>
+    <p class="m-hero-sub rv d2">
+      Не просто маркетинг на месяц — системная работа, которая формирует рыночную позицию компании на годы вперёд.
+    </p>
+  </div>
+
+  <!-- COLLAB -->
+  <div class="m-collab">
+    <div class="m-collab-label rv">Коллаборация</div>
+    <div class="m-collab-names rv d1">
+      <div class="m-collab-name">Djambatyrov</div>
+      <div class="m-collab-x">×</div>
+      <div class="m-collab-name">Metrio</div>
+    </div>
+    <p class="m-collab-desc rv d2">
+      Я строю коллаборацию имени <strong>Djambatyrov</strong> и маркетингового проекта <strong>Metrio</strong> — где каждый партнёр это не клиент на месяц, а долгосрочный союз на десятилетия. Это не агентство — это платформа для захвата рынков.
+    </p>
+  </div>
+
+  <!-- GOALS -->
+  <div class="m-goals">
+    <div class="m-goals-label rv">Цели</div>
+    <div class="m-goals-grid">
+      <div class="m-goal rv">
+        <div class="m-goal-num">01</div>
+        <div class="m-goal-title">3–5 проектов<br>в долгосрок</div>
+        <div class="m-goal-desc">Не разовые задачи — системная работа с командой на годы вперёд. Каждый проект строится как бизнес, а не как услуга. Выбираем ниши осознанно и идём в них до победы.</div>
+      </div>
+      <div class="m-goal rv d1">
+        <div class="m-goal-num">02</div>
+        <div class="m-goal-title">Команда<br>5 человек</div>
+        <div class="m-goal-desc">Маркетолог, SMM, таргетолог, дизайнер, аналитик. Компактная и управляемая структура с фокусом на результат. Каждый человек — профессионал в своей роли.</div>
+      </div>
+      <div class="m-goal rv d2">
+        <div class="m-goal-num">03</div>
+        <div class="m-goal-title">Захват ниш<br>на рынке</div>
+        <div class="m-goal-desc">Входим в нишу, выстраиваем систему, становимся лидером. Методология работает в любой категории — от B2C до B2B, от локального до регионального масштаба.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <div class="m-manifesto">
+    <div>
+      <div class="m-manifesto-label rv">Видение</div>
+      <div class="m-quote rv d1">
+        «Хочу создать коллаборацию где каждый проект — это партнёр на десятилетия, а не клиент на месяц»
+      </div>
+    </div>
+    <div>
+      <div class="m-manifesto-label rv">Принципы</div>
+      <div class="m-list rv d1">
+        <div class="m-list-item"><span class="m-list-n">01</span>Долгосрочные партнёрства вместо разовых заказов</div>
+        <div class="m-list-item"><span class="m-list-n">02</span>Системный маркетинг как конкурентное преимущество</div>
+        <div class="m-list-item"><span class="m-list-n">03</span>Команда как актив, а не расходная статья</div>
+        <div class="m-list-item"><span class="m-list-n">04</span>Metrio как платформа для роста в любой нише</div>
+        <div class="m-list-item"><span class="m-list-n">05</span>Захват рынков через аналитику, а не интуицию</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="m-cta rv">
+    <div class="m-cta-title">Готов к долгосрочному партнёрству?</div>
+    <div class="m-cta-sub">Обсудим ваш проект и то, как мы можем вырасти вместе</div>
+    <a class="m-cta-btn" href="https://wa.me/87785714860" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Написать в WhatsApp
+    </a>
+  </div>
+
+</div>
+
+<script>
+var saved=localStorage.getItem('theme');
+if(saved==='light')document.body.classList.add('light');
+
+var rio=new IntersectionObserver(function(e){
+  e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(function(el){rio.observe(el);});
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейсы — Metrio.co</title>
+<style>
+@font-face{font-family:'Gilroy';src:url('https://fonts.cdnfonts.com/s/16583/Gilroy-Regular.woff') format('woff');font-weight:400}
+@font-face{font-family:'Gilroy';src:url('https://fonts.cdnfonts.com/s/16583/Gilroy-Bold.woff') format('woff');font-weight:700}
+@font-face{font-family:'Gilroy';src:url('https://fonts.cdnfonts.com/s/16583/Gilroy-ExtraBold.woff') format('woff');font-weight:800}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0D0D0D;--bg2:#141414;--bg3:#1A1A1A;--border:#222;--border2:#2E2E2E;--text:#F0F0EE;--text2:#888;--text3:#444}
+html,body{font-family:'Gilroy','Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body.light{--bg:#F7F7F5;--bg2:#EFEFED;--bg3:#E8E8E6;--border:#DCDCD8;--border2:#C8C8C4;--text:#0C0C0C;--text2:#777;--text3:#BBBBBB}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:64px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between}
+body.light .nav{background:rgba(247,247,245,.96)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:22px;width:auto;filter:brightness(10)}
+body.light .nav-logo img{filter:none}
+.nav-logo-text{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.3px}
+.nav-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;transition:color .2s}
+.nav-back:hover{color:var(--text)}
+.nav-back svg{width:16px;height:16px}
+
+.page{max-width:1200px;margin:0 auto;padding:0 3rem}
+
+/* Hero */
+.c-hero{padding:7rem 0 5rem;border-bottom:1px solid var(--border)}
+.c-hero-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:10px;margin-bottom:1.5rem}
+.c-hero-label::before{content:'';width:24px;height:1px;background:var(--text3);display:block}
+.c-hero-title{font-size:clamp(44px,7vw,88px);font-weight:800;color:var(--text);line-height:1.02;letter-spacing:-3px;margin-bottom:1.25rem}
+.c-hero-sub{font-size:clamp(15px,1.6vw,18px);color:var(--text2);line-height:1.7;max-width:560px}
+
+/* Cases grid */
+.c-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--border);
+  border-left:1px solid var(--border);
+  margin:4rem 0;
+}
+.c-card{
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem;
+  position:relative;
+  text-decoration:none;
+  display:flex;flex-direction:column;
+  gap:1.25rem;
+  transition:background .25s;
+  min-height:280px;
+}
+.c-card:hover{background:rgba(255,255,255,.03)}
+body.light .c-card:hover{background:rgba(0,0,0,.025)}
+
+/* Logo area */
+.c-logo-area{
+  flex:1;
+  display:flex;align-items:center;justify-content:flex-start;
+}
+.c-logo-box{
+  display:flex;align-items:center;justify-content:center;
+  width:72px;height:72px;
+  border:1px solid var(--border2);
+  border-radius:4px;
+  font-size:10px;font-weight:900;letter-spacing:.06em;
+  color:var(--text2);text-align:center;
+  overflow:hidden;
+  background:var(--bg2);
+  flex-shrink:0;
+}
+.c-logo-box svg{width:48px;height:48px}
+
+.c-card-num{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.08em}
+.c-card-name{font-size:clamp(18px,2vw,22px);font-weight:800;color:var(--text);letter-spacing:-.4px;line-height:1.15}
+.c-card-role{font-size:13px;color:var(--text2);line-height:1.55}
+.c-card-tag{
+  display:inline-flex;align-items:center;
+  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text3);border:1px solid var(--border2);
+  padding:3px 9px;border-radius:2px;width:fit-content;
+}
+.c-card-arr{
+  position:absolute;top:2rem;right:2rem;
+  font-size:16px;color:var(--text3);
+  opacity:0;transform:translate(-4px,4px);
+  transition:opacity .2s,transform .2s;
+}
+.c-card:hover .c-card-arr{opacity:1;transform:translate(0,0)}
+
+/* Mobile */
+@media(max-width:900px){
+  .page{padding:0 1.5rem}
+  .nav{padding:0 1.25rem}
+  .c-hero{padding:4.5rem 0 3rem}
+  .c-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .c-grid{grid-template-columns:1fr}
+  .c-hero-title{font-size:clamp(36px,10vw,52px);letter-spacing:-1.5px}
+}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <img src="data:image/png;base64,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" alt="Metrio">
+    <span class="nav-logo-text">Metrio.co</span>
+  </a>
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="19 12 5 12"/><polyline points="12 5 5 12 12 19"/></svg>
+    На главную
+  </a>
+</nav>
+
+<div class="page">
+  <div class="c-hero rv">
+    <div class="c-hero-label">Опыт и кейсы</div>
+    <div class="c-hero-title">Где я работал</div>
+    <div class="c-hero-sub">9 проектов в разных нишах — от крупных федеральных брендов до локальных стартапов</div>
+  </div>
+
+  <div class="c-grid">
+
+    <!-- 01 AITU -->
+    <div class="c-card rv" id="aitu">
+      <div class="c-card-num">01</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#0a1628">
+          <svg viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="30" stroke="#4A9EFF" stroke-width="6" fill="none"/>
+            <circle cx="50" cy="50" r="18" stroke="#4A9EFF" stroke-width="4" fill="none"/>
+            <circle cx="50" cy="50" r="6" fill="#4A9EFF"/>
+            <text x="50" y="88" font-size="10" font-weight="900" fill="#4A9EFF" text-anchor="middle" font-family="Arial">AITU</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">Astana IT University</div>
+      <div class="c-card-role">Стажировка в отделе маркетинга университета</div>
+      <div class="c-card-tag">Образование</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 02 Dodo Pizza (продюссер) -->
+    <div class="c-card rv" id="dodo1">
+      <div class="c-card-num">02</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#FF6900">
+          <svg viewBox="0 0 100 60" fill="white" font-family="Arial Black,sans-serif">
+            <text x="50" y="26" font-size="20" font-weight="900" text-anchor="middle">DODO</text>
+            <text x="50" y="50" font-size="20" font-weight="900" text-anchor="middle">PIZZA</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">Dodo Pizza</div>
+      <div class="c-card-role">Продюссирование коммерческого ролика</div>
+      <div class="c-card-tag">FMCG</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 03 StudyMe -->
+    <div class="c-card rv" id="studyme">
+      <div class="c-card-num">03</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#1A1A2E">
+          <svg viewBox="0 0 100 60" fill="none" font-family="Arial,sans-serif">
+            <text x="50" y="28" font-size="14" font-weight="700" fill="#7C9EFF" text-anchor="middle">Study</text>
+            <text x="50" y="48" font-size="18" font-weight="900" fill="white" text-anchor="middle">Me</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">StudyMe</div>
+      <div class="c-card-role">Графический дизайнер в образовательном проекте</div>
+      <div class="c-card-tag">EdTech</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 04 Personal Brand -->
+    <div class="c-card rv" id="personal">
+      <div class="c-card-num">04</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#1C1C1C">
+          <svg viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="38" r="18" fill="#888"/>
+            <ellipse cx="50" cy="80" rx="28" ry="16" fill="#666"/>
+            <text x="50" y="98" font-size="9" fill="#555" text-anchor="middle" font-family="Arial">ЛИЧНЫЙ БРЕНД</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">Личный бренд</div>
+      <div class="c-card-role">Помощник продюссера в продвижении личного бренда</div>
+      <div class="c-card-tag">Personal Brand</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 05 WOW KIDS -->
+    <div class="c-card rv" id="wowkids">
+      <div class="c-card-num">05</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#C4A882">
+          <svg viewBox="0 0 100 70" fill="white" font-family="Arial Black,sans-serif">
+            <text x="50" y="32" font-size="26" font-weight="900" text-anchor="middle">WOW</text>
+            <circle cx="50" cy="28" r="5" fill="white"/>
+            <text x="50" y="56" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="3">KIDS</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">WOW KIDS</div>
+      <div class="c-card-role">Разработка сайта-магазина детской одежды на Tilda</div>
+      <div class="c-card-tag">E-commerce</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 06 PINgWIN -->
+    <div class="c-card rv" id="pingwin">
+      <div class="c-card-num">06</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#0D3B4F">
+          <svg viewBox="0 0 100 70" fill="none" font-family="Arial Black,sans-serif">
+            <text x="50" y="28" font-size="13" font-weight="900" fill="#00B4D8" text-anchor="middle">PINgWIN</text>
+            <text x="50" y="52" font-size="11" font-weight="700" fill="white" text-anchor="middle">BOWLING</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">PINgWIN Bowling</div>
+      <div class="c-card-role">Ассистент руководителя отдела маркетинга</div>
+      <div class="c-card-tag">Entertainment</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 07 HappyCake -->
+    <div class="c-card rv" id="happycake">
+      <div class="c-card-num">07</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#3A7BD5">
+          <svg viewBox="0 0 100 70" fill="none" font-family="Georgia,serif">
+            <text x="50" y="28" font-size="12" font-weight="700" fill="white" text-anchor="middle">Happy</text>
+            <text x="50" y="52" font-size="18" font-weight="900" fill="white" text-anchor="middle">Cake</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">HappyCake</div>
+      <div class="c-card-role">Региональный менеджер в головном офисе компании</div>
+      <div class="c-card-tag">F&B</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 08 Dodo Pizza (маркетолог) -->
+    <div class="c-card rv" id="dodo2">
+      <div class="c-card-num">08</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#FF6900">
+          <svg viewBox="0 0 100 60" fill="white" font-family="Arial Black,sans-serif">
+            <text x="50" y="26" font-size="20" font-weight="900" text-anchor="middle">DODO</text>
+            <text x="50" y="50" font-size="20" font-weight="900" text-anchor="middle">PIZZA</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">Dodo Pizza</div>
+      <div class="c-card-role">Локальный и региональный маркетолог в управляющей компании</div>
+      <div class="c-card-tag">FMCG</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+    <!-- 09 OzimTusem -->
+    <div class="c-card rv" id="ozim">
+      <div class="c-card-num">09</div>
+      <div class="c-logo-area">
+        <div class="c-logo-box" style="background:#F5F5F5;border-color:#ddd">
+          <svg viewBox="0 0 100 80" fill="none" font-family="Arial,sans-serif">
+            <rect x="5" y="5" width="90" height="70" rx="2" stroke="#555" stroke-width="6" fill="none"/>
+            <circle cx="50" cy="34" r="10" stroke="#555" stroke-width="4" fill="none"/>
+            <circle cx="50" cy="34" r="3" fill="#555"/>
+            <text x="50" y="64" font-size="11" font-weight="700" fill="#333" text-anchor="middle">Ozim Tusem</text>
+          </svg>
+        </div>
+      </div>
+      <div class="c-card-name">OzimTusem</div>
+      <div class="c-card-role">Упаковка, создание айдентики в студии автопортрета</div>
+      <div class="c-card-tag">Branding</div>
+      <div class="c-card-arr">↗</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+var saved=localStorage.getItem('theme');
+if(saved==='light')document.body.classList.add('light');
+var rio=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');rio.unobserve(x.target);}});},{threshold:0.08});
+document.querySelectorAll('.rv').forEach(function(el){rio.observe(el);});
+// Scroll to anchor if hash present
+if(location.hash){setTimeout(function(){var el=document.querySelector(location.hash);if(el)el.scrollIntoView({behavior:'smooth',block:'center'});},400);}
+</script>
+</body>
+</html>
